@@ -2,21 +2,25 @@ import discord
 from discord.ext import commands
 
 intents = discord.Intents.all()
+bot = commands.Bot(command_prefix='/', intents=intents)
 
-bity = commands.Bot(command_prefix='/', intents=intents)
 
-
-@bity.event
+@bot.event
 async def on_ready():
     print('\t\t-----------------')
-    print(f"{bity.user}: I'm online")
+    print(f"{bot.user}: I'm online")
 
-@bity.event()
+
+@bot.event
 async def on_message(message):
-    if message.author == bity.user:
+    if message.author == bot.user:
         return
-    if message.lower() == 'hi':
+    if message.content.lower() == 'hi':
         await message.channel.send(f'hi {message.author.mention}')
 
+@bot.command()
+async def infos(ctx):
+    await ctx.send(f'total of the members: {len(ctx.guild.users)}')
+
 from TokenFile import TOKEN
-bity.run(TOKEN)
+bot.run(TOKEN)
