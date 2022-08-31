@@ -19,5 +19,4 @@ async def on_message(message):
         await message.channel.send(f'hi {message.author.mention}')
 
 import os
-
-bity.run('MTAxMjM0NzE3ODQzNTQ4MTY0MA.Ggiijj.QLTEMzvuTlwB5DcZlRolploNb5BVveL5IebXVI')
+bity.run(os.getenv('TOKEN'))
