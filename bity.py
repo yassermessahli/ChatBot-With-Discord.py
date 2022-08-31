@@ -1,26 +1,19 @@
 import discord
 from discord.ext import commands
+from events import event_apply
+from commands import command_apply
 
 intents = discord.Intents.all()
+intents.members = True
+
 bot = commands.Bot(command_prefix='/', intents=intents)
 
 
-@bot.event
-async def on_ready():
-    print('\t\t-----------------')
-    print(f"{bot.user}: I'm online")
+event_apply(bot)
+command_apply(bot)
 
 
-@bot.event
-async def on_message(message):
-    if message.author == bot.user:
-        return
-    if message.content.lower() == 'hi':
-        await message.channel.send(f'hi {message.author.mention}')
-
-@bot.command()
-async def infos(ctx):
-    await ctx.send(f'total of the members: {len(ctx.guild.users)}')
 
 from TokenFile import TOKEN
+
 bot.run(TOKEN)
