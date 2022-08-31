@@ -18,5 +18,5 @@ async def on_message(message):
     if message.lower() == 'hi':
         await message.channel.send(f'hi {message.author.mention}')
 
-import os
-bity.run(os.getenv('TOKEN'))
+from TokenFile import TOKEN
+bity.run(TOKEN)
