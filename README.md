@@ -1,3 +1,3 @@
-# bity __test__ bot
+# Test bot
 
-this bot is just a *test* bot
+This bot is just a *test* bot
