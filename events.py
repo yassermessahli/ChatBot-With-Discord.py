@@ -1,23 +1,17 @@
 import discord
 from discord.ext import commands
 
-intents = discord.Intents.all()
-intents.members = True
-
-bot = commands.Bot(command_prefix='/', intents=intents)
-
-
 def event_apply(bot):
     @bot.event
     async def on_ready():
-        await bot.get_channel(1010897174130855989).send(f"heyy @everyone, I'm online!")
-
+        print(f'{bot.user.name} is online!')
     @bot.event
     async def on_message(message):
         if message.author == bot.user:
             return
         if message.content.lower() == 'hi':
             await message.channel.send(f'hi {message.author.mention}')
+        await bot.process_commands(message)
 
     @bot.event
     async def on_member_join(member):
